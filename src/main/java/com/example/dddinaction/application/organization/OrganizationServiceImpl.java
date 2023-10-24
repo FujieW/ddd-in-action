@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 public class OrganizationServiceImpl implements OrganizationService {
     public OrgResponse addOrg(CreateOrgRequest createOrgRequest, Long userId) {
 
-        return buildOrgResponse();
+        return null;
     }
 
     private OrgResponse buildOrgResponse() {
