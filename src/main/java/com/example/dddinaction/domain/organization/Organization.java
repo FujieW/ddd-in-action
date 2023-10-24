@@ -1,10 +1,13 @@
 package com.example.dddinaction.domain.organization;
 
+import lombok.Data;
+
 import java.time.LocalDateTime;
 
 /**
  * 组织
  */
+@Data
 public class Organization {
     private Long id;
     private Long tenantId;
@@ -12,7 +15,7 @@ public class Organization {
     private String orgTypeCode;
     private Long leaderId;
     private String name;
-    private OrgStatus status; // 使用了枚举类型
+    private OrgStatus status;
     private LocalDateTime createdAt;
     private Long createdBy;
     private LocalDateTime lastUpdatedAt;
@@ -21,4 +24,6 @@ public class Organization {
     public Organization() {
         this.status = OrgStatus.EFFECTIVE;
     }
+
+
 }
