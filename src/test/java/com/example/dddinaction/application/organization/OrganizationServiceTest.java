@@ -1,12 +1,7 @@
 package com.example.dddinaction.application.organization;
 
-import com.example.dddinaction.adapter.repository.organization.EmpRepository;
-import com.example.dddinaction.adapter.repository.organization.OrgTypeRepository;
-import com.example.dddinaction.adapter.repository.organization.OrganizationRepository;
-import com.example.dddinaction.adapter.repository.tenant.TenantRepository;
-import com.example.dddinaction.adapter.repository.user.UserRepository;
+import com.example.dddinaction.adapter.repository.organization.OrganizationRepositoryImpl;
 import com.example.dddinaction.common.convert.OrgConvert;
-import com.example.dddinaction.domain.organization.Organization;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +15,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 public class OrganizationServiceTest {
 
     @Mock
-    private OrganizationRepository orgRepository;
+    private OrganizationRepositoryImpl orgRepository;
 
     @InjectMocks
     private OrganizationServiceImpl organizationService;
