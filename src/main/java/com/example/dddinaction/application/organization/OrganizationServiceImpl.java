@@ -35,9 +35,14 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     public OrgResponse addOrg(CreateOrgRequest createOrgRequest, Long userId) {
+        validator(createOrgRequest, userId);
         Organization organization = orgConvert.convertFromCreateOrgRequest(createOrgRequest, userId);
-        OrgResponse response = orgRepository.save(organization);
-        return response;
+        organization = orgRepository.save(organization);
+        return orgConvert.convertToOrganizationDto(organization);
+    }
+
+    private void validator(CreateOrgRequest createOrgRequest, Long userId) {
+
     }
 
 

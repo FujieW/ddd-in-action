@@ -22,4 +22,14 @@ public class OrgConvert {
 
         return organization;
     }
+
+    public OrgResponse convertToOrganizationDto(Organization organization) {
+        return OrgResponse.builder()
+                .tenantId(organization.getTenantId())
+                .orgType(organization.getOrgTypeCode())
+                .superior(organization.getSuperiorId())
+                .leader(organization.getLeaderId())
+                .name(organization.getName())
+                .build();
+    }
 }

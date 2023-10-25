@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class OrganizationRepository {
-    public OrgResponse save(Organization organization) {
+    public Organization save(Organization organization) {
         return null;
     }
 }
