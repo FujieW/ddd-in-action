@@ -1,7 +1,5 @@
 package com.example.dddinaction.application.organization;
 
-import com.example.dddinaction.adapter.repository.organization.EmpRepositoryImpl;
-import com.example.dddinaction.adapter.repository.organization.OrganizationRepositoryImpl;
 import com.example.dddinaction.adapter.repository.user.UserRepository;
 import com.example.dddinaction.common.convert.OrgConvert;
 import com.example.dddinaction.common.exception.BusinessException;
@@ -18,26 +16,25 @@ public class OrganizationServiceImpl implements OrganizationService {
     private final UserRepository userRepository;
     private final TenantRepository tenantRepository;
     private final OrgTypeRepository orgTypeRepository;
-    private final OrganizationRepository orgRepository;
+    private final OrganizationRepository organizationRepository;
     private final EmpRepository empRepositoryImpl;
 
     private final OrgConvert orgConvert = new OrgConvert();
 
 
-
     @Autowired
-    public OrganizationServiceImpl(UserRepository userRepository, TenantRepository tenantRepository, OrgTypeRepository orgTypeRepository, OrganizationRepositoryImpl orgRepository, EmpRepositoryImpl empRepositoryImpl) {
+    public OrganizationServiceImpl(UserRepository userRepository, TenantRepository tenantRepository, OrgTypeRepository orgTypeRepository, OrganizationRepository organizationRepository, EmpRepository empRepositoryImpl) {
         this.userRepository = userRepository;
         this.tenantRepository = tenantRepository;
         this.orgTypeRepository = orgTypeRepository;
-        this.orgRepository = orgRepository;
+        this.organizationRepository = organizationRepository;
         this.empRepositoryImpl = empRepositoryImpl;
     }
 
     public OrgResponse addOrg(CreateOrgRequest request, Long userId) {
         validator(request, userId);
         Organization organization = orgConvert.convertFromCreateOrgRequest(request, userId);
-        organization = orgRepository.save(organization);
+        organization = organizationRepository.save(organization);
         return orgConvert.convertToOrganizationDto(organization);
     }
 
@@ -58,7 +55,7 @@ public class OrganizationServiceImpl implements OrganizationService {
             throw new BusinessException("'" + request.getOrgType() + "'不是有效的组织类别代码！");
         }
 
-        Organization superior = orgRepository.findByIdAndStatus(request.getSuperior(), OrgStatus.EFFECTIVE)
+        Organization superior = organizationRepository.findByIdAndStatus(request.getSuperior(), OrgStatus.EFFECTIVE)
                 .orElseThrow(() -> new BusinessException("'" + request.getSuperior() + "' 不是有效的组织 id !"));
 
         OrganizationType superiorOrgType = orgTypeRepository.findByCodeAndStatus(request.getSuperior(), superior.getOrgType(), OrgStatus.EFFECTIVE)
@@ -72,7 +69,15 @@ public class OrganizationServiceImpl implements OrganizationService {
         if (request.getLeader() != null && !empRepositoryImpl.existsByIdAndStatus(request.getTenant(), request.getLeader(), EmpStatus.REGULAR, EmpStatus.PROBATION)) {
             throw new BusinessException("组织负责人(id='" + request.getLeader() + "')不是在职员工！");
         }
+        // 组织必须有名称
+        if (StringUtils.isEmpty(request.getName())) {
+            throw new BusinessException("组织没有名称！");
+        }
 
+        // 同一个组织下的下级组织不能重名
+        if (organizationRepository.existsBySuperiorAndName(request.getTenant(), request.getSuperior(), request.getName())) {
+            throw new BusinessException("同一上级下已经有名为'" + request.getName() + "'的组织存在！");
+        }
 
     }
 

@@ -17,4 +17,9 @@ public class OrganizationRepositoryImpl implements OrganizationRepository {
     public Optional<Organization> findByIdAndStatus(Long superior, OrgStatus orgStatus) {
         return Optional.empty();
     }
+
+    @Override
+    public boolean existsBySuperiorAndName(Long tenant, Long superior, String name) {
+        return true;
+    }
 }
