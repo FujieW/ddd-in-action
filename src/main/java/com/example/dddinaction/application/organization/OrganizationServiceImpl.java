@@ -80,16 +80,4 @@ public class OrganizationServiceImpl implements OrganizationService {
         }
 
     }
-
-
-    private OrgResponse buildOrgResponse() {
-        return OrgResponse.builder()
-                .tenantId(1L)
-                .name("狗剩集团")
-                .superior(1L)
-                .tenantId(1L)
-                .orgType("开发中心")
-                .build();
-
-    }
 }
