@@ -12,7 +12,7 @@ public class Organization {
     private Long id;
     private Long tenantId;
     private Long superiorId;
-    private String orgTypeCode;
+    private String orgType;
     private Long leaderId;
     private String name;
     private OrgStatus status;

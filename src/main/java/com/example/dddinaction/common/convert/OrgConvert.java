@@ -13,7 +13,7 @@ public class OrgConvert {
         organization.setLeaderId(createOrgRequest.getLeader());
         organization.setSuperiorId(createOrgRequest.getSuperior());
         organization.setTenantId(createOrgRequest.getTenant());
-        organization.setOrgTypeCode(createOrgRequest.getOrgType());
+        organization.setOrgType(createOrgRequest.getOrgType());
 
         organization.setCreatedAt(LocalDateTime.now());
         organization.setCreatedBy(userId);
@@ -26,7 +26,7 @@ public class OrgConvert {
     public OrgResponse convertToOrganizationDto(Organization organization) {
         return OrgResponse.builder()
                 .tenantId(organization.getTenantId())
-                .orgType(organization.getOrgTypeCode())
+                .orgType(organization.getOrgType())
                 .superior(organization.getSuperiorId())
                 .leader(organization.getLeaderId())
                 .name(organization.getName())

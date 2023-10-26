@@ -4,21 +4,22 @@ import com.example.dddinaction.common.exception.BusinessException;
 
 import java.util.Arrays;
 
-public enum OrgStatus {
+public enum OrgTypeStatus {
+
     EFFECTIVE("EF", "有效"),
     TERMINATED("TE", "终止");
 
     private final String code;
     private final String desc;
 
-    public static OrgStatus ofCode(String code) {
+    public static OrgTypeStatus ofCode(String code) {
         return Arrays.stream(values())
                 .filter( s -> s.code.equals(code))
                 .findAny()
-                .orElseThrow(() -> new BusinessException(code + "不是有效的组织状态代码！"));
+                .orElseThrow(() -> new BusinessException(code + "不是有效的组织类型状态代码！"));
     }
 
-    OrgStatus(String code, String desc) {
+    OrgTypeStatus(String code, String desc) {
         this.code = code;
         this.desc = desc;
 
