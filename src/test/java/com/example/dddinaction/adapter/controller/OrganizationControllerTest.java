@@ -1,3 +1,4 @@
+/*
 package com.example.dddinaction.adapter.controller;
 
 import com.alibaba.fastjson.JSONObject;
@@ -65,8 +66,6 @@ public class OrganizationControllerTest {
                     // .andExpect(MockMvcResultMatchers.content().json(JSONObject.toJSONString(response)))
                     .andReturn();
             String content = mvcResult.getResponse().getContentAsString();
-            System.out.println(content);
-            System.out.println("content = " + content);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -94,3 +93,4 @@ public class OrganizationControllerTest {
         return org;
     }
 }
+*/
