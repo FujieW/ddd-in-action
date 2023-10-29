@@ -16,15 +16,7 @@ import java.util.stream.Collectors;
 @Component
 public class EmpRepositoryImpl implements EmpRepository {
 
-    @Autowired
-    private OrganizationMapper organizationMapper;
-
-    public EmpRepositoryImpl() {
-    }
-
     public boolean existsByIdAndStatus(Long tenant, Long leader, EmpStatus ... empStatus) {
-        List<String> empStatusCode = Arrays.stream(empStatus).map(EmpStatus::code).collect(Collectors.toList());
-        OrganizationDO organizationDo = organizationMapper.findByIdAndStatus(tenant, leader, empStatusCode);
-        return !Objects.isNull(organizationDo);
+        return false;
     }
 }

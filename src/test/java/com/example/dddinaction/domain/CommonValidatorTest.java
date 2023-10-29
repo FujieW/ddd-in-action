@@ -4,7 +4,6 @@ import com.example.dddinaction.application.organization.CreateOrgRequest;
 import com.example.dddinaction.common.exception.BusinessException;
 import com.example.dddinaction.domain.organization.OrgCommonValidator;
 import com.example.dddinaction.domain.tenant.TenantRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -14,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -30,7 +28,7 @@ public class CommonValidatorTest {
     public void should_throw_exception_when_add_a_org_into_a_terminated_tenant() {
         CreateOrgRequest createOrgRequest = buildCreateOrgRequest();
         when(tenantRepository.existsByIdAndStatus(anyLong(), any())).thenReturn(false);
-        BusinessException exception = assertThrows(BusinessException.class, () -> orgCommonValidator.verify(createOrgRequest));
+        BusinessException exception = assertThrows(BusinessException.class, () -> orgCommonValidator.verify(createOrgRequest.getTenant()));
         assertEquals("id为'" + createOrgRequest.getTenant() + "'的租户不是有效租户！", exception.getMessage());
     }
 
@@ -38,7 +36,7 @@ public class CommonValidatorTest {
     public void should_do_nothing_when_tenant_is_effective() {
         CreateOrgRequest createOrgRequest = buildCreateOrgRequest();
         when(tenantRepository.existsByIdAndStatus(anyLong(), any())).thenReturn(true);
-        orgCommonValidator.verify(createOrgRequest);
+        orgCommonValidator.verify(createOrgRequest.getTenant());
     }
 
     private CreateOrgRequest buildCreateOrgRequest() {

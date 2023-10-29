@@ -10,51 +10,24 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.when;
 
-// @RunWith(MockitoJUnitRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
+@Transactional
 public class OrganizationServiceTest {
 
-    @Mock
-    private OrganizationRepositoryImpl organizationRepository;
-
-    @Mock
-    private TenantRepository tenantRepository;
-
-    @Mock
-    private OrgTypeRepository orgTypeRepository;
-
-    @Mock
-    private EmpRepository empRepository;
-
-    @Mock
-    private OrgValidator orgValidator;
-
-
-    @InjectMocks
+    @Autowired
     private OrganizationServiceImpl organizationService;
-
-
-    private OrgConvert orgConvert;
-
-    @BeforeEach
-    public void setUp() {
-        orgConvert = new OrgConvert();
-    }
 
     @DisplayName("Test_For_Add_Org")
     @Nested
@@ -64,16 +37,6 @@ public class OrganizationServiceTest {
             CreateOrgRequest request = buildCreateOrgRequest();
             OrgResponse response = buildOrgResponse();
             Long userId = 1L;
-            doNothing().when(orgValidator).validator(any(), anyLong());
-            // when(tenantRepository.existsByIdAndStatus(anyLong(), any())).thenReturn(true);
-            Organization organization = orgConvert.convertFromCreateOrgRequest(request, userId);
-            when(organizationRepository.save(any())).thenReturn(organization);
-            // when(orgTypeRepository.existsByCodeAndStatus(anyLong(), anyString(), any())).thenReturn(true);
-            // Organization superior = getSuperior();
-            // when(organizationRepository.findByIdAndStatus(anyLong(), any())).thenReturn(Optional.of(superior));
-            // when(orgTypeRepository.findByCodeAndStatus(anyLong(), anyString(), any())).thenReturn(Optional.of(getSuperiorOrgType()));
-            // when(empRepository.existsByIdAndStatus(anyLong(), anyLong(), any())).thenReturn(true);
-            // when(organizationRepository.existsBySuperiorAndName(request.getTenant(), request.getSuperior(), request.getName())).thenReturn(false);
 
             OrgResponse result = organizationService.addOrg(request, userId);
 

@@ -10,7 +10,6 @@ import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -31,7 +30,7 @@ public class OrgTypeValidatorTest {
     public void should_throw_exception_when_org_type_is_null_or_empty() {
         CreateOrgRequest createOrgRequest = buildCreateOrgRequest();
         createOrgRequest.setOrgType(null);
-        BusinessException exception = assertThrows(BusinessException.class, () -> orgTypeValidator.verify(createOrgRequest));
+        BusinessException exception = assertThrows(BusinessException.class, () -> orgTypeValidator.verify(createOrgRequest.getTenant(), createOrgRequest.getOrgType()));
         assertEquals("组织类别不能为空！", exception.getMessage());
     }
 
@@ -39,7 +38,7 @@ public class OrgTypeValidatorTest {
     public void should_throw_exception_when_add_an_enterprise() {
         CreateOrgRequest createOrgRequest = buildCreateOrgRequest();
         createOrgRequest.setOrgType("ENTP");
-        BusinessException exception = assertThrows(BusinessException.class, () -> orgTypeValidator.verify(createOrgRequest));
+        BusinessException exception = assertThrows(BusinessException.class, () -> orgTypeValidator.verify(createOrgRequest.getTenant(), createOrgRequest.getOrgType()));
         assertEquals("企业是在创建租户的时候创建好的，因此不能单独创建企业", exception.getMessage());
     }
 
@@ -47,7 +46,7 @@ public class OrgTypeValidatorTest {
     public void should_throw_exception_when_org_type_is_not_effective() {
         CreateOrgRequest createOrgRequest = buildCreateOrgRequest();
         when(orgTypeRepository.existsByCodeAndStatus(anyLong(), anyString(), any())).thenReturn(false);
-        BusinessException exception = assertThrows(BusinessException.class, () -> orgTypeValidator.verify(createOrgRequest));
+        BusinessException exception = assertThrows(BusinessException.class, () -> orgTypeValidator.verify(createOrgRequest.getTenant(), createOrgRequest.getOrgType()));
         assertEquals("'" + createOrgRequest.getOrgType() + "'不是有效的组织类别代码！", exception.getMessage());
     }
 

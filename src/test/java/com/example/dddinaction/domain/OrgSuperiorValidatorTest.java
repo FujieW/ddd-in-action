@@ -36,7 +36,7 @@ public class OrgSuperiorValidatorTest {
         OrganizationType superiorOrgType = getSuperiorOrgType();
         when(organizationRepository.findByIdAndStatus(anyLong(), any())).thenReturn(Optional.ofNullable(superior));
         when(orgTypeRepository.findByCodeAndStatus(anyLong(), anyString(), any())).thenReturn(Optional.ofNullable(null));
-        BusinessException exception = assertThrows(BusinessException.class, () -> orgSuperiorValidator.verify(createOrgRequest));
+        BusinessException exception = assertThrows(BusinessException.class, () -> orgSuperiorValidator.verify(createOrgRequest.getSuperior(), createOrgRequest.getOrgType()));
         assertEquals("id 为 '" + createOrgRequest.getSuperior() + "' 的组织的组织类型代码 '" + superior.getOrgType() + "' 无效!", exception.getMessage());
     }
 
@@ -49,7 +49,7 @@ public class OrgSuperiorValidatorTest {
         when(orgTypeRepository.existsByCodeAndStatus(anyLong(), anyString(), any())).thenReturn(true);
         when(organizationRepository.findByIdAndStatus(anyLong(), any())).thenReturn(Optional.of(superior));
         when(orgTypeRepository.findByCodeAndStatus(anyLong(), anyString(), any())).thenReturn(Optional.of(superiorOrgType));
-        BusinessException exception = assertThrows(BusinessException.class, () -> orgSuperiorValidator.verify(createOrgRequest));
+        BusinessException exception = assertThrows(BusinessException.class, () -> orgSuperiorValidator.verify(createOrgRequest.getSuperior(), createOrgRequest.getOrgType()));
         assertEquals("开发中心或直属部门的上级(id = '" + createOrgRequest.getSuperior() + "')不是企业！", exception.getMessage());
     }
 
