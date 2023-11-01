@@ -1,5 +1,6 @@
 package com.example.dddinaction.domain.organization;
 
+import org.assertj.core.util.VisibleForTesting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -57,7 +58,8 @@ public class OrgBuilder {
         return organization;
     }
 
-    private void validate() {
+    @VisibleForTesting
+    protected void validate() {
         orgCommonValidator.verify(this.tenantId);
         orgLeaderValidator.verify(this.tenantId, this.leaderId);
         orgTypeValidator.verify(this.tenantId, this.orgType);

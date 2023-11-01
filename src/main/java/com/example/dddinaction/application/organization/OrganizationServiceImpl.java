@@ -7,17 +7,18 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class OrganizationServiceImpl implements OrganizationService {
+
     private final OrganizationRepository organizationRepository;
 
-    @Autowired
     private OrgBuilderFactory orgBuilderFactory;
 
     private final OrgConvert orgConvert = new OrgConvert();
 
 
     @Autowired
-    public OrganizationServiceImpl(OrganizationRepository organizationRepository) {
+    public OrganizationServiceImpl(OrganizationRepository organizationRepository, OrgBuilderFactory orgBuilderFactory) {
         this.organizationRepository = organizationRepository;
+        this.orgBuilderFactory = orgBuilderFactory;
 
     }
 
