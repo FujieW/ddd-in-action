@@ -5,6 +5,8 @@ import com.example.dddinaction.domain.organization.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class OrganizationServiceImpl implements OrganizationService {
 
@@ -35,6 +37,5 @@ public class OrganizationServiceImpl implements OrganizationService {
         organization = organizationRepository.save(organization);
         return orgConvert.convertToOrganizationDto(organization);
     }
-
 
 }
