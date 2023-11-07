@@ -1,6 +1,4 @@
-package com.example.dddinaction.domain.organization;
-
-import com.example.dddinaction.domain.organization.Organization;
+package com.example.dddinaction.domain.organization.org;
 
 import java.util.Optional;
 

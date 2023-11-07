@@ -1,4 +1,4 @@
-package com.example.dddinaction.domain.organization;
+package com.example.dddinaction.domain.organization.org;
 
 import lombok.Data;
 

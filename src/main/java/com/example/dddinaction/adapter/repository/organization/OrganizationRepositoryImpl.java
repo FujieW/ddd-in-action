@@ -1,14 +1,10 @@
 package com.example.dddinaction.adapter.repository.organization;
 
-import com.example.dddinaction.adapter.repository.organization.dao.OrganizationDAO;
-import com.example.dddinaction.adapter.repository.organization.dataobject.OrganizationDO;
-import com.example.dddinaction.domain.organization.OrgStatus;
-import com.example.dddinaction.domain.organization.OrganizationRepository;
-import com.example.dddinaction.domain.organization.Organization;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.dddinaction.domain.organization.org.OrgStatus;
+import com.example.dddinaction.domain.organization.org.OrganizationRepository;
+import com.example.dddinaction.domain.organization.org.Organization;
 import org.springframework.stereotype.Component;
 
-import java.util.Objects;
 import java.util.Optional;
 
 @Component

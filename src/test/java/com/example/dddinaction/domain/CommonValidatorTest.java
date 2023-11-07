@@ -2,7 +2,7 @@ package com.example.dddinaction.domain;
 
 import com.example.dddinaction.application.organization.CreateOrgRequest;
 import com.example.dddinaction.common.exception.BusinessException;
-import com.example.dddinaction.domain.organization.OrgCommonValidator;
+import com.example.dddinaction.domain.organization.org.validator.OrgCommonValidator;
 import com.example.dddinaction.domain.tenant.TenantRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

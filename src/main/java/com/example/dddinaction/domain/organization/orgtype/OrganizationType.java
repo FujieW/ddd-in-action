@@ -1,4 +1,6 @@
-package com.example.dddinaction.domain.organization;
+package com.example.dddinaction.domain.organization.orgtype;
+
+import com.example.dddinaction.domain.organization.orgtype.OrgTypeStatus;
 
 import java.time.LocalDateTime;
 

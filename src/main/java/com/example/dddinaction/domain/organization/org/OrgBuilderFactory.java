@@ -1,5 +1,6 @@
-package com.example.dddinaction.domain.organization;
+package com.example.dddinaction.domain.organization.org;
 
+import com.example.dddinaction.domain.organization.org.validator.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

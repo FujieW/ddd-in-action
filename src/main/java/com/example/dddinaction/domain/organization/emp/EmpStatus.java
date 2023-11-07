@@ -1,4 +1,4 @@
-package com.example.dddinaction.domain.organization;
+package com.example.dddinaction.domain.organization.emp;
 
 import com.example.dddinaction.common.exception.BusinessException;
 

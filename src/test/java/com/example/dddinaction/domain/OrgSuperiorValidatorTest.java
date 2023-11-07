@@ -2,7 +2,11 @@ package com.example.dddinaction.domain;
 
 import com.example.dddinaction.application.organization.CreateOrgRequest;
 import com.example.dddinaction.common.exception.BusinessException;
-import com.example.dddinaction.domain.organization.*;
+import com.example.dddinaction.domain.organization.org.*;
+import com.example.dddinaction.domain.organization.org.validator.OrgSuperiorValidator;
+import com.example.dddinaction.domain.organization.orgtype.OrgTypeRepository;
+import com.example.dddinaction.domain.organization.orgtype.OrgTypeStatus;
+import com.example.dddinaction.domain.organization.orgtype.OrganizationType;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -33,7 +37,6 @@ public class OrgSuperiorValidatorTest {
     public void should_throw_exception_when_superior_org_type_is_not_effective() {
         CreateOrgRequest createOrgRequest = buildCreateOrgRequest();
         Organization superior = getSuperior();
-        OrganizationType superiorOrgType = getSuperiorOrgType();
         when(organizationRepository.findByIdAndStatus(anyLong(), any())).thenReturn(Optional.ofNullable(superior));
         when(orgTypeRepository.findByCodeAndStatus(anyLong(), anyString(), any())).thenReturn(Optional.ofNullable(null));
         BusinessException exception = assertThrows(BusinessException.class, () -> orgSuperiorValidator.verify(createOrgRequest.getSuperior(), createOrgRequest.getOrgType()));

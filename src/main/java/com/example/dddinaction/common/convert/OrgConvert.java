@@ -2,7 +2,7 @@ package com.example.dddinaction.common.convert;
 
 import com.example.dddinaction.application.organization.CreateOrgRequest;
 import com.example.dddinaction.application.organization.OrgResponse;
-import com.example.dddinaction.domain.organization.Organization;
+import com.example.dddinaction.domain.organization.org.Organization;
 
 import java.time.LocalDateTime;
 

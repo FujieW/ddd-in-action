@@ -1,4 +1,4 @@
-package com.example.dddinaction.domain.organization;
+package com.example.dddinaction.domain.organization.org.validator;
 
 import com.example.dddinaction.common.exception.BusinessException;
 import com.example.dddinaction.domain.tenant.TenantRepository;

@@ -1,6 +1,8 @@
-package com.example.dddinaction.domain.organization;
+package com.example.dddinaction.domain.organization.org.validator;
 
 import com.example.dddinaction.common.exception.BusinessException;
+import com.example.dddinaction.domain.organization.org.OrgStatus;
+import com.example.dddinaction.domain.organization.orgtype.OrgTypeRepository;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

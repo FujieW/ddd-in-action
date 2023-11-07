@@ -2,8 +2,8 @@ package com.example.dddinaction.domain;
 
 import com.example.dddinaction.application.organization.CreateOrgRequest;
 import com.example.dddinaction.common.exception.BusinessException;
-import com.example.dddinaction.domain.organization.OrgNameValidator;
-import com.example.dddinaction.domain.organization.OrganizationRepository;
+import com.example.dddinaction.domain.organization.org.validator.OrgNameValidator;
+import com.example.dddinaction.domain.organization.org.OrganizationRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;

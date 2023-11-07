@@ -1,11 +1,11 @@
 package com.example.dddinaction.application.organization;
 
 import com.example.dddinaction.common.convert.OrgConvert;
-import com.example.dddinaction.domain.organization.*;
+import com.example.dddinaction.domain.organization.org.OrgBuilderFactory;
+import com.example.dddinaction.domain.organization.org.Organization;
+import com.example.dddinaction.domain.organization.org.OrganizationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
 
 @Component
 public class OrganizationServiceImpl implements OrganizationService {
