@@ -23,4 +23,14 @@ public class OrganizationRepositoryImpl implements OrganizationRepository {
     public boolean existsBySuperiorAndName(Long tenant, Long superior, String name) {
         return true;
     }
+
+    @Override
+    public Optional<Organization> findByTenantIdAndOrgId(Long tenantId, Long orgId) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Organization update(Organization organization) {
+        return null;
+    }
 }

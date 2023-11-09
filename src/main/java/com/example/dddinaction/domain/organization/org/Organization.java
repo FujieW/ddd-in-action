@@ -26,4 +26,11 @@ public class Organization {
     }
 
 
+    public void cancel() {
+        this.status = OrgStatus.TERMINATED;
+    }
+
+    public boolean isEffective() {
+        return this.status == OrgStatus.EFFECTIVE;
+    }
 }
