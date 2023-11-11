@@ -22,10 +22,6 @@ public class Organization extends AuditableEntity {
     private LocalDateTime lastUpdatedAt;
     private Long lastUpdatedBy;
 
-    public Organization() {
-        super();
-    }
-
     public Organization(LocalDateTime createdAt, Long userId) {
         super(LocalDateTime.now(), userId);
         this.status = OrgStatus.EFFECTIVE;

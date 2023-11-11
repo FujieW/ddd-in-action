@@ -62,7 +62,7 @@ public class OrgSuperiorValidatorTest {
     }
 
     private Organization getSuperior() {
-        Organization organization = new Organization();
+        Organization organization = new Organization(LocalDateTime.now(), 1L);
         organization.setSuperiorId(0L);
         organization.setName("租户");
         organization.setTenantId(1L);

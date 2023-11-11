@@ -1,6 +1,7 @@
 package com.example.dddinaction.domain.organization.emp;
 
 import com.example.dddinaction.common.exception.BusinessException;
+import lombok.Getter;
 
 import java.util.Arrays;
 
@@ -9,7 +10,9 @@ public enum EmpStatus {
     PROBATION("PROBATION", "试用"),
     TERMINATED("TERMINATED", "终止");
 
+    @Getter
     private final String code;
+    @Getter
     private final String desc;
 
     public static EmpStatus ofCode(String code) {
@@ -25,11 +28,18 @@ public enum EmpStatus {
 
     }
 
-    public String code() {
-        return code;
+    public EmpStatus becomeRegular() {
+        if (this != PROBATION) {
+            throw new BusinessException("试用期员工才能转正");
+        }
+        return EmpStatus.REGULAR;
     }
 
-    public String getDesc() {
-        return desc;
+    public EmpStatus terminate() {
+        if (this != REGULAR) {
+            throw new BusinessException("正式员工才能终止");
+        }
+        return EmpStatus.TERMINATED;
     }
+
 }

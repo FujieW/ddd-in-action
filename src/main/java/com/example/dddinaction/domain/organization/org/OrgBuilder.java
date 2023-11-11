@@ -45,15 +45,13 @@ public class OrgBuilder {
 
     public Organization build() {
         validate();
-        Organization organization = new Organization();
+        Organization organization = new Organization(LocalDateTime.now(), this.createdBy);
         organization.setTenantId(this.tenantId);
         organization.setOrgType(this.orgType);
         organization.setSuperiorId(this.superiorId);
         organization.setLeaderId(this.leaderId);
         organization.setName(this.name);
         organization.setStatus(this.status);
-        organization.setCreatedBy(this.createdBy);
-        organization.setCreatedAt(this.createdAt);
         organization.setLastUpdatedAt(this.lastUpdatedAt);
         organization.setLastUpdatedBy(this.lastUpdatedBy);
         return organization;

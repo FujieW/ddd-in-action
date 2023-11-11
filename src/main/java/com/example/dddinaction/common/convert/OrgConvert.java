@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 public class OrgConvert {
     public Organization convertFromCreateOrgRequest(CreateOrgRequest createOrgRequest, Long userId) {
-        Organization organization = new Organization();
+        Organization organization = new Organization(LocalDateTime.now(), userId);
         organization.setName(createOrgRequest.getName());
         organization.setLeaderId(createOrgRequest.getLeader());
         organization.setSuperiorId(createOrgRequest.getSuperior());

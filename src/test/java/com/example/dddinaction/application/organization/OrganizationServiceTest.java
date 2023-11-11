@@ -14,6 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.doNothing;
@@ -86,7 +88,7 @@ public class OrganizationServiceTest {
     }
 
     private Organization buildOrganization() {
-        Organization organization = new Organization();
+        Organization organization = new Organization(LocalDateTime.now(), 1L);
         organization.setLeaderId(1L);
         organization.setTenantId(1L);
         organization.setSuperiorId(1L);
