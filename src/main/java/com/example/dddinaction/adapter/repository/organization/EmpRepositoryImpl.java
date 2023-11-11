@@ -1,11 +1,9 @@
 package com.example.dddinaction.adapter.repository.organization;
 
-import com.example.dddinaction.domain.organization.emp.EmpRepository;
-import com.example.dddinaction.domain.organization.emp.EmpStatus;
-import com.example.dddinaction.domain.organization.emp.Employee;
-import com.example.dddinaction.domain.organization.emp.Skill;
+import com.example.dddinaction.domain.organization.emp.*;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Component
@@ -23,7 +21,9 @@ public class EmpRepositoryImpl implements EmpRepository {
 
     @Override
     public Optional<Employee> findById(Long tenantId, String idNum) {
-        return Optional.empty();
+        RebuiltEmp emp = new RebuiltEmp(1L, LocalDateTime.now(), 1L);
+
+        return Optional.of(emp);
     }
 
     private void insertSkill(Skill skill) {

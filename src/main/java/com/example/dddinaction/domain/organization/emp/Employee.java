@@ -16,21 +16,21 @@ import java.util.*;
 @Getter
 public class Employee extends AuditableEntity {
     @Setter
-    private Long id;
+    protected Long id;
     private final Long tenantId;
     @Setter
-    private Long orgId;
+    protected Long orgId;
     @Setter
-    private String name;
+    protected String name;
     @Setter
-    private String num;
+    protected String num;
     @Setter
-    private String idNum;
+    protected String idNum;
     @Setter
-    private LocalDateTime dob;
-    private EmpStatus status;
-    private final List<Skill> skills;
-    private final List<Post> posts;
+    protected LocalDateTime dob;
+    protected EmpStatus status;
+    protected final List<Skill> skills;
+    protected final List<Post> posts;
 
     public Employee(Long tenantId, LocalDateTime createdAt, Long createdBy) {
         super();

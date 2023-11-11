@@ -36,4 +36,10 @@ public class EmployeeServiceImpl implements EmployeeService{
         empRepository.save(employee);
         return empAssembler.toResponse(employee);
     }
+
+    @Override
+    public EmpResponse findById(Long tenantId, String id) {
+        Employee employee = empRepository.findById(tenantId, id).orElseThrow(() -> new RuntimeException("Employee not found"));
+        return empAssembler.toResponse(employee);
+    }
 }

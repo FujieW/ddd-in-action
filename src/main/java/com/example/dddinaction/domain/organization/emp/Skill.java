@@ -8,11 +8,11 @@ import java.time.LocalDateTime;
 
 @Getter
 public class Skill extends AuditableEntity {
-    private Long ID;
-    private final Long tenantId;
-    private final Long skillTypeId;
+    protected Long ID;
+    protected final Long tenantId;
+    protected final Long skillTypeId;
     SkillLevel skillLevel;
-    private int duration;
+    protected int duration;
 
     Skill(Long tenantId, Long skillTypeId, LocalDateTime createdAt, Long createdBy) {
         super(createdAt, createdBy);
