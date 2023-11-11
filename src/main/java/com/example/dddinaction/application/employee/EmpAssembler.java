@@ -37,4 +37,8 @@ public class EmpAssembler {
     private void validateCreateRequest(CreateEmpRequest request) {
         orgCommonValidator.verify(request.getTenantId());
     }
+
+    public EmpResponse toResponse(Employee employee) {
+        return null;
+    }
 }

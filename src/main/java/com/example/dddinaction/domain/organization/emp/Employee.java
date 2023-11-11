@@ -1,5 +1,6 @@
 package com.example.dddinaction.domain.organization.emp;
 
+import com.example.dddinaction.common.exception.BusinessException;
 import com.example.dddinaction.common.framework.domain.AuditableEntity;
 import com.example.dddinaction.domain.organization.post.Post;
 import lombok.Getter;
@@ -70,4 +71,23 @@ public class Employee extends AuditableEntity {
             throw new IllegalArgumentException("该员工已拥有该技能");
         }
     }
+
+    public Employee updateSKill(Long skillId, SkillLevel skillLevel, int duration, Long userId) {
+        Skill skill = this.getSkill(skillId).orElseThrow(() -> new BusinessException("该员工没有该技能"));
+        if (skill.getSkillLevel()!= skillLevel || skill.getDuration()!= duration) {
+            skill.setSkillLevel(skillLevel);
+            skill.setDuration(duration);
+            skill.setLastUpdatedAt(LocalDateTime.now());
+            skill.setLastUpdatedBy(userId);
+            skill.toUpdate();
+        }
+        return this;
+    }
+
+    public Employee deleteSkill(Long skillId) {
+        this.getSkill(skillId).orElseThrow(() -> new BusinessException("该员工没有该技能")).toDelete();
+        return this;
+    }
+
+
 }
