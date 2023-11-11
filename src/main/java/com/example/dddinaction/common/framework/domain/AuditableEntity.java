@@ -13,6 +13,9 @@ public class AuditableEntity {
     protected LocalDateTime lastUpdatedAt;
     protected Long lastUpdatedBy;
 
+    public AuditableEntity() {
+    }
+
     public AuditableEntity(LocalDateTime createdAt, Long createdBy) {
         this.createdAt = createdAt;
         this.createdBy = createdBy;

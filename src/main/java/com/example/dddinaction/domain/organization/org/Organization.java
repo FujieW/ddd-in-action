@@ -1,5 +1,6 @@
 package com.example.dddinaction.domain.organization.org;
 
+import com.example.dddinaction.common.framework.domain.AuditableEntity;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -8,7 +9,7 @@ import java.time.LocalDateTime;
  * 组织
  */
 @Data
-public class Organization {
+public class Organization extends AuditableEntity {
     private Long id;
     private Long tenantId;
     private Long superiorId;
@@ -22,6 +23,11 @@ public class Organization {
     private Long lastUpdatedBy;
 
     public Organization() {
+        super();
+    }
+
+    public Organization(LocalDateTime createdAt, Long userId) {
+        super(LocalDateTime.now(), userId);
         this.status = OrgStatus.EFFECTIVE;
     }
 
