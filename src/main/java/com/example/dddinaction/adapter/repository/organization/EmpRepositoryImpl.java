@@ -15,8 +15,8 @@ public class EmpRepositoryImpl implements EmpRepository {
 
     @Override
     public void save(Employee employee) {
-        insertEmp(employee);
-        employee.getSkills().forEach(this::insertSkill);
+        saveEmp(employee);
+        employee.getSkills().forEach(this::saveSkill);
     }
 
     @Override
@@ -26,12 +26,48 @@ public class EmpRepositoryImpl implements EmpRepository {
         return Optional.of(emp);
     }
 
-    private void insertSkill(Skill skill) {
+    private void saveSkill(Skill skill) {
+        switch (skill.getChangingStatus()) {
+            case NEW:
+                insertSkillRecord(skill);
+                break;
+            case UPDATED:
+                updateSkillRecord(skill);
+                break;
+            case DELETED:
+                deleteSkillRecord(skill);
+                break;
+        }
+    }
+
+    private void deleteSkillRecord(Skill skill) {
 
     }
 
-    private void insertEmp(Employee employee) {
+    private void updateSkillRecord(Skill skill) {
 
+    }
+
+    private void insertSkillRecord(Skill skill) {
+
+    }
+
+    private void saveEmp(Employee employee) {
+        switch (employee.getChangingStatus()) {
+            case NEW:
+                insertEmpRecord(employee);
+                break;
+            case UPDATED:
+                updateEmpRecord(employee);
+                break;
+        }
+    }
+
+    private void updateEmpRecord(Employee employee) {
+
+    }
+
+    private void insertEmpRecord(Employee employee) {
 
     }
 }

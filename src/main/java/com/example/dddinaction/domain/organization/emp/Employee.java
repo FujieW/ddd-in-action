@@ -1,6 +1,7 @@
 package com.example.dddinaction.domain.organization.emp;
 
 import com.example.dddinaction.common.exception.BusinessException;
+import com.example.dddinaction.common.framework.domain.AggregateRoot;
 import com.example.dddinaction.common.framework.domain.AuditableEntity;
 import com.example.dddinaction.domain.organization.post.Post;
 import lombok.Getter;
@@ -14,7 +15,7 @@ import java.util.*;
  */
 
 @Getter
-public class Employee extends AuditableEntity {
+public class Employee extends AggregateRoot {
     @Setter
     protected Long id;
     private final Long tenantId;
@@ -33,7 +34,7 @@ public class Employee extends AuditableEntity {
     protected final List<Post> posts;
 
     public Employee(Long tenantId, LocalDateTime createdAt, Long createdBy) {
-        super();
+        super(createdAt, createdBy);
         this.tenantId = tenantId;
         this.createdAt = createdAt;
         this.createdBy = createdBy;
